@@ -65,6 +65,19 @@ describe('Model(attrs)', function() {
     });
     var user = User();
   });
+
+  it('includes the initial params in the initialize event', function(done) {
+    User.once('initialize', function(passedUser, params) {
+      expect(params).to.eql(initialParams);
+      done();
+    });
+    var initialParams = {
+      name: 'tobi',
+      age: 22
+    }
+    var user = User(initialParams);
+  });
+
 });
 
 describe('new Model([attrs])', function() {
