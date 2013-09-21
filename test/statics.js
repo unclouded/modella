@@ -28,7 +28,7 @@ describe('Model.attr', function() {
     expect(Pet._defaults).to.have.property('name', 'Samson');
   });
 
-  describe('Getter() it generates', function(){
+  describe('the Getter() it generates', function(){
     var User;
     var Address;
 
@@ -40,7 +40,7 @@ describe('Model.attr', function() {
         .attr('address', { type: Address });
     });
 
-    it('should return a model if one is nested', function(){
+    it('returns a model if one is nested', function(){
       var user = new User({
         name: 'Joe',
         address: {

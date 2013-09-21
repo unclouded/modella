@@ -364,6 +364,15 @@ describe("Model#save()", function() {
       var obj = user.toJSON();
       expect(obj.name).to.equal('matt');
     });
+
+    it('should include nested models', function(){
+      var Address = model('Address').attr('city');
+      var User = model('User').attr('name').attr('address', { type: Address });
+
+      var user = new User({ name: 'Tobi', address: { city: 'New York' } });
+      var obj = user.toJSON();
+      expect(obj).to.eql({ name: 'Tobi', address: { city: 'New York' } });      
+    });
   });
 
   describe('Model#isValid()', function() {
