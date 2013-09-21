@@ -27,6 +27,34 @@ describe('Model.attr', function() {
     var Pet = model('Pet').attr('name', {defaultValue: 'Samson'});
     expect(Pet._defaults).to.have.property('name', 'Samson');
   });
+
+  describe('Getter() it generates', function(){
+    var User;
+    var Address;
+
+    beforeEach(function() {
+      Address = model('Address').attr('street').attr('city');
+      
+      User = model('User')
+        .attr('name')
+        .attr('address', { type: Address });
+    });
+
+    it('should return a model if one is nested', function(){
+      var user = new User({
+        name: 'Joe',
+        address: {
+          street: 'High street',
+          city: 'London'
+        }
+      });
+      expect(user).to.be.ok();
+      expect(user.address()).to.be.ok();
+      expect(user.address().model).to.be.ok();
+      expect(user.address().model.name).to.equal('Model');
+    })
+  })
+
 });
 
 describe("Model.validate", function() {
@@ -94,5 +122,6 @@ describe("Model.all", function() {
       done();
     });
   });
+
 });
 
