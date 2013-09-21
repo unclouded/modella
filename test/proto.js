@@ -373,6 +373,24 @@ describe("Model#save()", function() {
       var obj = user.toJSON();
       expect(obj).to.eql({ name: 'Tobi', address: { city: 'New York' } });      
     });
+
+    it('should work with arrays of nested models', function(){
+      var Address = model('Address').attr('city');
+      var User = model('User').attr('name').attr('addresses', { type: 'array' });
+
+      var addresses = [
+        new Address({ city: 'London' }),
+        new Address({ city: 'Paris'})
+      ];
+
+      var user = new User({
+        name: 'Jane',
+        addresses: addresses
+      });
+
+      var obj = user.toJSON();
+      expect(obj).to.eql({ name: 'Jane', addresses: [ { city: 'London' }, { city: 'Paris'} ] })
+    })
   });
 
   describe('Model#isValid()', function() {
