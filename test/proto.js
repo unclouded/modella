@@ -371,7 +371,7 @@ describe("Model#save()", function() {
 
       var user = new User({ name: 'Tobi', address: { city: 'New York' } });
       var obj = user.toJSON();
-      expect(obj).to.eql({ name: 'Tobi', address: { city: 'New York' } });      
+      expect(obj).to.eql({ name: 'Tobi', address: { city: 'New York' } });
     });
 
     it('should work with arrays of nested models', function(){

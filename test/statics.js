@@ -34,7 +34,7 @@ describe('Model.attr', function() {
 
     beforeEach(function() {
       Address = model('Address').attr('street').attr('city');
-      
+
       User = model('User')
         .attr('name')
         .attr('address', { type: Address });
