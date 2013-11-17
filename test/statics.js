@@ -52,9 +52,17 @@ describe('Model.attr', function() {
       expect(user.address()).to.be.ok();
       expect(user.address().model).to.be.ok();
       expect(user.address().model.name).to.equal('Model');
-    })
-  })
+    });
 
+    it('does not return a model if attr is blank', function(){
+      var user = new User({
+        name: 'Joe'
+      });
+      expect(user).to.be.ok();
+      expect(user.address()).not.to.be.ok();
+    });
+
+  });
 });
 
 describe("Model.validate", function() {
